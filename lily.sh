@@ -2,7 +2,7 @@
 
 PM="package-manager"
 
-sync_pm() {
+set_pm() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     PM="brew"
   else
@@ -11,7 +11,7 @@ sync_pm() {
   fi
 }
 
-sync_pm
+set_pm
 
 check_pm() {
   if ! command -v $PM >/dev/null 2>&1; then
@@ -22,10 +22,10 @@ check_pm() {
 
 check_pm
 
-set_packages() {
+sync_packages() {
   $PM list --installed-on-request >brew_list.txt
   $PM list --cask >>brew_list.txt
-  echo "brew_list is setted"
+  echo "brew_list is synced"
 }
 
 install_packages() {
@@ -38,13 +38,20 @@ show_usage() {
   echo "Usage: $0 {set|install}"
 }
 
+set_alias() {
+  echo 'alias lily="~/.config/lily.sh"' >>~/.zshrc
+}
+
 while [[ $# -gt 0 ]]; do
   case $1 in
   sync)
-    set_packages
+    sync_packages
     ;;
   install)
     install_packages
+    ;;
+  set-alias)
+    set_alias
     ;;
   -h | --help)
     show_usage
