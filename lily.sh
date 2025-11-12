@@ -2,7 +2,7 @@
 
 PM="package-manager"
 
-set_pm() {
+sync_pm() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     PM="brew"
   else
@@ -11,7 +11,7 @@ set_pm() {
   fi
 }
 
-set_pm
+sync_pm
 
 check_pm() {
   if ! command -v $PM >/dev/null 2>&1; then
@@ -40,7 +40,7 @@ show_usage() {
 
 while [[ $# -gt 0 ]]; do
   case $1 in
-  set)
+  sync)
     set_packages
     ;;
   install)

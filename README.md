@@ -1,6 +1,6 @@
 # Usage
 
 ```sh
-./lily.sh set 
+./lily.sh sync
 ./lily.sh install 
 ```
