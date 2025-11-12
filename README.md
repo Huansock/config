@@ -1,12 +1,6 @@
 # Usage
 
-```bash
-```bash 
+```sh
 ./lily.sh set 
 ./lily.sh install 
-```
-
-
-```
-```
 ```
